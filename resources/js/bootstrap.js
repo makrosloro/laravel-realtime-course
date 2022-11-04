@@ -27,9 +27,7 @@ window.Pusher = Pusher;
 
 window.Echo = new Echo({
     broadcaster: 'pusher',
-    // key: '4c75b2f67a50167afbbc',
     key: import.meta.env.VITE_PUSHER_APP_KEY,
-    // cluster: 'eu',
     cluster: import.meta.env.VITE_PUSHER_APP_CLUSTER,
     forceTLS: true
 });
