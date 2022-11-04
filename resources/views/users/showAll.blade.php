@@ -35,7 +35,28 @@
 
                     usersElements.appendChild(element);
                 });
+            });
+    </script>
+
+    <script type="module">
+        Echo.channel('users')
+            .listen('UserCreated', (e) => {
+                const usersElements = document.getElementById('users-list');
+                let element = document.createElement('li');
+
+                element.setAttribute('id', e.user.id);
+                element.innerText = e.user.name;
+
+                usersElements.appendChild(element);
             })
+            .listen('UserUpdated', (e) => {
+                let element = document.getElementById(e.user.id);
+                element.innerText = e.user.name;
+            })
+            .listen('UserDeleted', (e) => {
+                let element = document.getElementById(e.user.id);
+                element.parentNode.removeChild(element);
+            });
     </script>
 @endpush
 
